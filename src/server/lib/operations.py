@@ -1,5 +1,5 @@
 def addition(numbers):
-    sum = 0
+    result = 0
     for number in numbers:
-        sum += number
-    return sum
+        result += number
+    return result
