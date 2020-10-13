@@ -1,5 +1,8 @@
 def addition(numbers):
     result = 0
     for number in numbers:
-        result += int(number)
-    return result
+        if number=="blank":
+            return "blank"
+        else:
+            result += int(number)
+            return result
