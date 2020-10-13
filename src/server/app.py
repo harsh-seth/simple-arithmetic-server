@@ -16,14 +16,14 @@ def postAddition():
     numbers = []
     
     for token in operands.split(','):
-        if token=="" or token==0:
-            numbers.append("0")
+        if token=="":
+            numbers.append("blank")
             break
         else:
             numbers.append(int(token))
     
     result = addition(numbers)
-    if result==0:
+    if result=="blank":
         return "No operands were passed!"
     else:    
         return "The result will be {}".format(result)
