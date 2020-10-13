@@ -16,11 +16,17 @@ def postAddition():
     numbers = []
     
     for token in operands.split(','):
-        numbers.append(int(token))
+        if token=="" or token==0:
+            numbers.append("0")
+            break
+        else:
+            numbers.append(int(token))
     
     result = addition(numbers)
-
-    return "The result will be {}".format(result)
+    if result==0:
+        return "No operands were passed!"
+    else:    
+        return "The result will be {}".format(result)
 
 if __name__ == '__main__':
     app.run(port=SERVER_PORT)
