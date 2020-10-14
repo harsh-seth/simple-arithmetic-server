@@ -12,16 +12,22 @@ def getIndex():
 
 @app.route('/addition', methods=['POST'])
 def postAddition():
+    flag=0
     data = request.form
     operands = data['operands']
     numbers = []
     
     for token in operands.split(','):
-        numbers.append(int(token))
-    
+        if token=="":
+            flag+=1
+            continue
+        else:
+            numbers.append(int(token))
     result = addition(numbers)
-
-    return TEMPLATE_STRINGS["op_result"].format(result)
+    if flag>0 and result==0:
+        return TEMPLATE_STRINGS["noop_result"].format(result)
+    else:
+        return TEMPLATE_STRINGS["op_result"].format(result)
 
 if __name__ == '__main__':
     app.run(port=SERVER_PORT)
