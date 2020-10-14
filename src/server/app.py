@@ -13,7 +13,6 @@ def getIndex():
 @app.route('/addition', methods=['POST'])
 def postAddition():
     flag=0
-    #numbers_length=0
     data = request.form
     operands = data['operands']
     numbers = []
@@ -24,7 +23,6 @@ def postAddition():
             continue
         else:
             numbers.append(int(token))
-    #numbers_length=len(numbers)
     result = addition(numbers)
     if flag>0 and result==0:
         return TEMPLATE_STRINGS["noop_result"].format(result)
