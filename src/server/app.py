@@ -1,5 +1,5 @@
 from flask import Flask, request, send_file
-from lib.operations import addition, multiplication
+from lib.operations import addition, multiplication, decimal_to_fraction
 from lib.constants import TEMPLATE_STRINGS
 
 SERVER_PORT = 8080
@@ -47,6 +47,18 @@ def postMultiplication():
         return TEMPLATE_STRINGS["noop_result"].format(result)
     else:
         return TEMPLATE_STRINGS["op_result"].format(result)
+
+@app.route('/decimaltofraction', methods=['POST'])
+def postDecimalToFraction():
+    data = request.form
+    decimal = data['decimal']
+    decimal = decimal.replace(' ', '')
+    decimal = decimal.replace(',', '.')
+    result = decimal_to_fraction(decimal)
+    if decimal.count('.') > 1:
+        return TEMPLATE_STRINGS['no_decimal']
+    else:
+        return TEMPLATE_STRINGS['decimal_to_fraction'].format(result)
 
 if __name__ == '__main__':
     app.run(port=SERVER_PORT)
