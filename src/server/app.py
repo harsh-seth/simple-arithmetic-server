@@ -1,5 +1,5 @@
 from flask import Flask, request, send_file
-from lib.operations import addition
+from lib.operations import addition, multiplication
 from lib.constants import TEMPLATE_STRINGS
 
 SERVER_PORT = 8080
@@ -16,7 +16,7 @@ def postAddition():
     data = request.form
     operands = data['operands']
     numbers = []
-    
+
     for token in operands.split(','):
         if token=="":
             flag+=1
@@ -24,6 +24,25 @@ def postAddition():
         else:
             numbers.append(int(token))
     result = addition(numbers)
+    if flag>0 and result==0:
+        return TEMPLATE_STRINGS["noop_result"].format(result)
+    else:
+        return TEMPLATE_STRINGS["op_result"].format(result)
+
+@app.route('/multiplication', methods=['POST'])
+def postMultiplication():
+    flag=0
+    data = request.form
+    operands = data['operands']
+    numbers = []
+
+    for token in operands.split(','):
+        if token=="":
+            flag+=1
+            continue
+        else:
+            numbers.append(int(token))
+    result = multiplication(numbers)
     if flag>0 and result==0:
         return TEMPLATE_STRINGS["noop_result"].format(result)
     else:

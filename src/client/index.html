@@ -10,12 +10,18 @@
     <h2>Simple Maths</h2>
     <p>
         Find the resultant of simple math operations here! <br/>
-        We currently support: <b>Addition</b> <br/>
-        We will be supporting: <b>Addition</b>, <b>Multiplication</b>, <b>Decimal to Fraction Conversion</b>
+        We currently support: <b>Addition</b>, <b>Multiplication</b> <br/>
+        We will be supporting: <b>Addition</b>, <b>Decimal to Fraction Conversion</b>
     </p>
     <section class="operation">
         <h4>Addition</h4>
         <form action="addition" method="post">
+            <label for="operands">Operands (comma-separated):</label>
+            <input type="text" name="operands" id="operands"> <br/>
+            <input type="submit" value="Calculate!">
+        </form>
+        <h4>Multiplication</h4>
+        <form action="multiplication" method="post">
             <label for="operands">Operands (comma-separated):</label>
             <input type="text" name="operands" id="operands"> <br/>
             <input type="submit" value="Calculate!">
